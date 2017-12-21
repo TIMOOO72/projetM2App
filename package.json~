@@ -1,0 +1,43 @@
+{
+  "name": "AwesomeProject",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-preset-react-native": "^2.1.0",
+    "babel-preset-stage-1": "^6.24.1",
+    "jest-expo": "^21.0.2",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-preset-react-native": "2.1.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "lockit-couchdb-adapter": "^0.5.1",
+    "material-ui": "^0.19.4",
+    "react": "^16.0.0-alpha.12",
+    "react-dom": "^16.1.1",
+    "react-native": "^0.48.4",
+    "react-native-elements": "^0.18.2",
+    "react-native-icons": "^0.7.1",
+    "react-native-material-ui": "^1.14.0",
+    "react-native-vector-icons": "^4.4.2",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "xtend": "^4.0.1"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/fonts"
+    ]
+  }
+}
