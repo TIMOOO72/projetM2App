@@ -23,12 +23,9 @@ const store = configureStore({});
 export default class App extends Component {
 	render () {
 		return(
-			<View>
-				<Header />
-				<Provider store={store}>
-					<AppContainer/>
-				</Provider>
-			</View>
+			<Provider store={store}>
+				<AppContainer/>
+			</Provider>
 		);
 	}
 }

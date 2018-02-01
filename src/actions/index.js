@@ -9,7 +9,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const fetchSerieCollection = () => async dispatch => {
-    const res = await axios.get("/api/serieCollection");
+    const res = await axios.get("http://projetm2-lemans.herokuapp.com/api/serieCollection");
     dispatch({type:"fetch_serieCollection", payload: res.data});
 }; 
 

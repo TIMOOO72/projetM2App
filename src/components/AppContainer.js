@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image, WebView, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchSeries } from "../actions";
+import { fetchSerieCollection } from "../actions";
 import axios from 'axios';
 
 class AppContainer extends Component {
@@ -16,8 +16,17 @@ class AppContainer extends Component {
         this.testConnection = this.testConnection.bind(this);
         this.state={inputValue:"game"};
     }
+    
+    componentDidMount() {
+      this.props.fetchSerieCollection();
+    }
 	
-	renderContent() {
+    
+    componentDidUpdate() {
+      this.props.fetchSerieCollection();
+      
+    }
+	/*renderContent2() {
 		console.log('RENDER CONTENT');
         return this.props.series.map((serie) => {
         		return(
@@ -29,6 +38,21 @@ class AppContainer extends Component {
         			</View>
         		);
         });
+      }*/
+      
+      renderContent() {
+      	  console.log("render");
+      	  console.log(this.props.serieCollection);
+      	  return this.props.serieCollection.map((serieUser) => {
+			  return (
+				<View key={serieUser.title}>
+					<Text > {serieUser.title}</Text>
+					<Image 
+					style={{width:50, height:50}}
+					source={{uri: serieUser.poster}} />
+				</View>
+			  );
+        });
       }
       
       updateInputValue(e){
@@ -38,48 +62,34 @@ class AppContainer extends Component {
       }
 	
      async testConnection(){
-		try{
-			console.log('TEST CO');
-			let res = await axios.get("http://10.188.38.127:5000/api/testMobile");
-			console.log('TEST CO 2');
-			this.setState({res});
-			 return(
-			<View>
-				<Text> BLABLA </Text>
-				<Text>{this.state.res}</Text>
-			</View>
-			);
-		}
-		catch(error){
-			console.error(error);
-		}
-     	
+			const uri = 'http://projetm2-lemans.herokuapp.com/api/login';
+			const res = await axios.post(uri, {email:"jean72@gmail.com", password:"aaaa"})
+			.then((response) => {
+					console.log('login response', response);
+					this.props.fetchSerieCollection();
+					console.log(this.props.serieCollection);
+					
+			});
 	}
 	
 	render() {
 		return (
-			<View>
+			<View >
+				
 				<Button
 				 	onPress={ () => this.testConnection()}
 				 		title="TEST CO"
 				 		color="#841584"
 				 		accessibilityLabel="Learn more about this purple button"
 				 	/>
-				<Button
-				 	onPress={ () => this.props.fetchSeries(this.state.inputValue)}
-				 		title="Search serie"
-				 		color="#841584"
-				 		accessibilityLabel="Learn more about this purple button"
-				 	/>
-				 
-				 {this.renderContent()}
+				{this.renderContent()}
 			</View>
 		);
 	}
 }
 
-function mapStateToProps({ series }) {
-    return { series };
+function mapStateToProps({ auth, serieCollection }) {
+    return { auth, serieCollection };
   }
 
-export default connect(mapStateToProps, { fetchSeries })(AppContainer);
+export default connect(mapStateToProps, { fetchSerieCollection })(AppContainer);

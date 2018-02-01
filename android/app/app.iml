@@ -116,6 +116,7 @@
     <orderEntry type="library" exported="" name="com.facebook.fresco:fresco-1.3.0" level="project" />
     <orderEntry type="library" exported="" name="org.webkit:android-jsc-r174650" level="project" />
     <orderEntry type="module" module-name="react-native-vector-icons" exported="" />
+    <orderEntry type="module" module-name="react-native-icons" exported="" />
     <orderEntry type="library" exported="" name="android-android-23" level="project" />
   </component>
 </module>

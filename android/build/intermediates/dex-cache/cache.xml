@@ -237,6 +237,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Timothy\AwesomeProject\android\app\build\intermediates\exploded-aar\AwesomeProject\react-native-icons\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9fa750fa59a4b233e131f0678fca8c1eda45a9c3">
+        <dex dex="C:\Users\Timothy\AwesomeProject\android\app\build\intermediates\pre-dexed\debug\AwesomeProject-react-native-icons-unspecified_64b5599db317ef5c75dbaba51d015105cea1948e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Timothy\AwesomeProject\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
