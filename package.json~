@@ -2,6 +2,14 @@
   "name": "AwesomeProject",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:5000"
+    },
+    "/api/*": {
+      "target": "http://localhost:5000"
+    }
+  },
   "devDependencies": {
     "babel-preset-react-native": "^2.1.0",
     "babel-preset-stage-1": "^6.24.1",
@@ -29,7 +37,10 @@
     "react-native-elements": "^0.18.2",
     "react-native-icons": "^0.7.1",
     "react-native-material-ui": "^1.14.0",
+    "react-native-oauth": "^2.2.0",
+    "react-native-simple-auth": "^2.2.0",
     "react-native-vector-icons": "^4.4.2",
+    "react-navigation": "^1.0.0-beta.27",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",

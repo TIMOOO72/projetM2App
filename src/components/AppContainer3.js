@@ -1,12 +1,16 @@
-import { google } from 'react-native-simple-auth';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Header from "./header.js";
+import Bottom from "./bottom.js";
 
-google({
-        appId: '958303494758-m3n4mn5af5mf1koil07i9v1qlvlu1rpa.apps.googleusercontent.com',
-        callback: 'http://projetm2-lemans.herokuapp.com/auth/google',
-}).then((info) => {
-  info.user //- user details from the provider
-  info.credentials //- tokens from the provider
-}).catch((error) => {
-   error.code
-   error.description
-});
+
+const AppContainer3 = () => {
+		return (
+			<View >
+				<Header/>
+				<Bottom/>
+			</View>
+		);
+}
+
+export default AppContainer3;

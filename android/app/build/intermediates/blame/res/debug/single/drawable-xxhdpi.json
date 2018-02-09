@@ -68,6 +68,10 @@
         "source": "C:\\Users\\Timothy\\AwesomeProject\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-xxhdpi\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Timothy\\AwesomeProject\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\node_modules_reactnavigation_src_views_assets_backicon.png",
+        "source": "C:\\Users\\Timothy\\AwesomeProject\\android\\app\\src\\main\\res\\drawable-xxhdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
+    },
+    {
         "merged": "C:\\Users\\Timothy\\AwesomeProject\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\abc_btn_check_to_on_mtrl_000.png",
         "source": "C:\\Users\\Timothy\\AwesomeProject\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-xxhdpi\\abc_btn_check_to_on_mtrl_000.png"
     },

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry, View } from 'react-native';
-import AppContainer2 from './src/components/AppContainer2';
-import Header from './src/components/header.js';
+import AppContainer from './src/components/AppContainer';
+import Login from './src/components/login';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducer from './src/reducers';
-
+import { StackNavigator } from 'react-navigation';
 // middleware that logs actions
 
 function configureStore(initialState) {
@@ -19,6 +19,11 @@ function configureStore(initialState) {
 }
 
 const store = configureStore({});
+
+const navigation = StackNavigator({
+		Login: {screen: Login}
+		Main: {screen: AppContainer}
+});
 
 export default class App extends Component {
 	render () {

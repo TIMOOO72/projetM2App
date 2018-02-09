@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, WebView, Linking } from 'react-native';
+import { View, Text, Button, Image, WebView, Linking, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import Header from "./header.js";
+import Bottom from "./bottom.js";
 import { fetchSerieCollection } from "../actions";
 import axios from 'axios';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers, compose} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducer from '../reducers';
+import { ThemeProvider } from '/Users/Timothy/AwesomeProject/node_modules/react-native-material-ui';
+import { BottomNavigation } from '/Users/Timothy/AwesomeProject/node_modules/react-native-material-ui';
+
+
+
+function configureStore(initialState) {
+	   const enhancer = compose(
+		   applyMiddleware(
+		   thunkMiddleware, // lets us dispatch() functions
+		   ),
+	  );
+	  return createStore(reducer, initialState, enhancer);
+}
+
+const store = configureStore({});
 
 class AppContainer extends Component {
 	
@@ -74,19 +95,51 @@ class AppContainer extends Component {
 	
 	render() {
 		return (
-			<View >
-				
-				<Button
-				 	onPress={ () => this.testConnection()}
-				 		title="TEST CO"
-				 		color="#841584"
-				 		accessibilityLabel="Learn more about this purple button"
-				 	/>
-				{this.renderContent()}
-			</View>
+			<Provider store={store}>
+				<View style={{flex: 1}} >
+					<View style={{flex: 0.9}}>
+						<Header/>			
+						<ScrollView>
+							{this.renderContent()}
+						</ScrollView>
+					</View>
+					<View style={{flex: 0.1}}>
+						<ThemeProvider>
+							<BottomNavigation hidden={false} >
+								<BottomNavigation.Action
+									key="dashboard"
+									icon="dashboard"
+									label="Dashboard"
+									onPress={() => this.setState({ active: 'dashboard' })}
+								/>
+								<BottomNavigation.Action
+									key="explore"
+									icon="explore"
+									label="Explore"
+									onPress={() => this.setState({ active: 'explore' })}
+								/>
+								<BottomNavigation.Action
+									key="trending-up"
+									icon="trending-up"
+									label="Discover"
+									onPress={() => this.setState({ active: 'trending-up' })}
+								/>
+								<BottomNavigation.Action
+									key="settings"
+									icon="settings"
+									label="Settings"
+									onPress={() => this.setState({ active: 'setting' })}
+								/>
+							</BottomNavigation>
+						</ThemeProvider>);
+					</View>
+				</View>
+			</Provider>
 		);
 	}
 }
+
+
 
 function mapStateToProps({ auth, serieCollection }) {
     return { auth, serieCollection };

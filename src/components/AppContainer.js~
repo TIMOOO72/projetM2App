@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, WebView, Linking } from 'react-native';
+import { View, Text, Button, Image, WebView, Linking, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import Header from "./header.js";
+import Bottom from "./bottom.js";
 import { fetchSerieCollection } from "../actions";
 import axios from 'axios';
 
@@ -41,6 +43,7 @@ class AppContainer extends Component {
       }*/
       
       renderContent() {
+      	  console.log("render");
       	  console.log(this.props.serieCollection);
       	  return this.props.serieCollection.map((serieUser) => {
 			  return (
@@ -61,39 +64,56 @@ class AppContainer extends Component {
       }
 	
      async testConnection(){
-     	 	
 			const uri = 'http://projetm2-lemans.herokuapp.com/api/login';
-			const res = await axios.post(uri, {email:"jean72@gmail.com", password:"aaaa"});
-			console.log(res);
-			this.props.fetchSerieCollection();
-			console.log(this.props.serieCollection);
-			
-     	
+			const res = await axios.post(uri, {email:"jean72@gmail.com", password:"aaaa"})
+			.then((response) => {
+					console.log('login response', response);
+					this.props.fetchSerieCollection();
+					console.log(this.props.serieCollection);
+					
+			});
 	}
 	
 	render() {
-		console.log("pouet");
 		return (
-			<View >
-				
-				<Button
-				 	onPress={ () => this.testConnection()}
-				 		title="TEST CO"
-				 		color="#841584"
-				 		accessibilityLabel="Learn more about this purple button"
-				 	/>
-				<Button
-				 	onPress={ () => this.props.fetchSerieCollection()}
-				 		title="Search serie"
-				 		color="#841584"
-				 		accessibilityLabel="Learn more about this purple button"
-				 	/>
-				 	
-				 	<Text>{this.props.serieCollection}</Text>
+			<View style={{flex: 1}} >
+				<View style={{flex: 0.9}}>
+					<Header/>			
+					<Button
+						onPress={ () => this.testConnection()}
+							title="TEST CO"
+							color="#841584"
+							accessibilityLabel="Learn more about this purple button"
+						/>
+					<ScrollView>
+						{this.renderContent()}
+					</ScrollView>
+				</View>
+				<View style={{flex: 0.1}}>
+					<Bottom/>
+				</View>
 			</View>
 		);
 	}
 }
+
+var styles = StyleSheet.create({
+footer: {
+  position: 'absolute',
+  flex:0.1,
+  left: 0,
+  right: 0,
+  bottom: -10,
+  backgroundColor:'green',
+  flexDirection:'row',
+  height:80,
+  alignItems:'center',
+},
+bottomButtons: {
+  alignItems:'center',
+  justifyContent: 'center',
+  flex:1,
+}})
 
 function mapStateToProps({ auth, serieCollection }) {
     return { auth, serieCollection };
