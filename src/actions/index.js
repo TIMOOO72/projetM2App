@@ -1,11 +1,21 @@
 import axios from "axios";
 import {FETCH_USER} from "./types";
-import {FETCH_SERIES} from "./types";
+import {FETCH_SERIES, FETCH_POPULAR} from "./types";
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get('/api/current_user');
     dispatch({type:FETCH_USER, payload : res.data});
    
+};
+
+export const fetchPopular = () => async dispatch => {
+    let res = await axios.get('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1',{
+        params:{
+            api_key: "23b1cff8b37c4540541d6f1fae9e1bd3"
+        }
+    });
+    res = res.data.results;
+    dispatch({type:FETCH_POPULAR, payload: res});
 };
 
 export const fetchSerieCollection = () => async dispatch => {
