@@ -8,10 +8,6 @@ const Header = () => {
       <Toolbar
         leftElement="menu"
         centerElement="Media Monster"
-          searchable={{
-            autoFocus: true,
-            placeholder: 'Search',
-          }}
       />
     </ThemeProvider>);
 };

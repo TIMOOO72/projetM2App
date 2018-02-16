@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, WebView, Linking, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, Image, WebView, Linking, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import Header from "./header.js";
 import Bottom from "./bottom.js";
@@ -10,7 +10,7 @@ import { createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducer from '../reducers';
 import { ThemeProvider } from '/Users/Timothy/AwesomeProject/node_modules/react-native-material-ui';
-import { BottomNavigation } from '/Users/Timothy/AwesomeProject/node_modules/react-native-material-ui';
+import { BottomNavigation, Button } from '/Users/Timothy/AwesomeProject/node_modules/react-native-material-ui';
 
 
 
@@ -26,7 +26,7 @@ function configureStore(initialState) {
 const store = configureStore({});
 
 class AppContainer extends Component {
-	
+	static navigationOptions = { title: 'Welcome', header: { visible:false } };
 	
 	
 	constructor(props){
@@ -66,11 +66,14 @@ class AppContainer extends Component {
 		console.log(this.props.popular);
         return this.props.popular.map((serie) => {
         		return(
-        			<View key={serie.id}>
-        				<Text> {serie.name}</Text>
+        			<View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}} key={serie.id}>
+        				<Text style={{textAlign:'center', fontWeight:'bold', fontSize:25}}> {serie.name}</Text>
         				<Image 
-        				style={{width:50, height:50}}
+        				style={{width:150, height:200}}
         				source={ {uri: "https://image.tmdb.org/t/p/w500"+serie.poster_path} } />
+        				<ThemeProvider>
+							<Button raised primary text="Add" style={{width:150, alignItems:'center',}}/>
+						</ThemeProvider>
         			</View>
         		);
         });
@@ -87,11 +90,14 @@ class AppContainer extends Component {
 		console.log(this.props.series);
         return this.props.series.map((serie) => {
         		return(
-        			<View key={serie.id}>
-        				<Text> {serie.name}</Text>
+        			<View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}} key={serie.id}>
+        				<Text style={{textAlign:'center', fontWeight:'bold', fontSize:25}}> {serie.name}</Text>
         				<Image 
-        				style={{width:50, height:50}}
+        				style={{width:150, height:200}}
         				source={ {uri: "https://image.tmdb.org/t/p/w500"+serie.poster_path} } />
+        				<ThemeProvider>
+							<Button raised primary text="Add" style={{width:150, alignItems:'center',}}/>
+						</ThemeProvider>
         			</View>
         		);
         });
@@ -121,11 +127,16 @@ class AppContainer extends Component {
       	  console.log(this.props.serieCollection);
       	  return this.props.serieCollection.map((serieUser) => {
 			  return (
-				<View key={serieUser.title}>
-					<Text > {serieUser.title}</Text>
+				<View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}} key={serieUser.title}>
+					<Text style={{textAlign:'center', fontWeight:'bold', fontSize:25}}> {serieUser.title}</Text>
 					<Image 
-					style={{width:50, height:50}}
+					style={{width:150, height:200, alignItems:'center',}}
 					source={{uri: serieUser.poster}} />
+					<ThemeProvider>
+						<Button raised primary icon="done" text="Vu" style={{width:150, alignItems:'center',}}/>
+					</ThemeProvider>
+					<Text style={{textAlign:'center'}}>S{serieUser.currentSeason}-E{serieUser.currentEpisode}</Text>
+					<Text style={{textAlign:'center'}}> Encore {serieUser.nbEpisodes-serieUser.totalEpisodes} à regarder</Text>
 				</View>
 			  );
         });

@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import reducer from '../reducers';
 import { fetchSerieCollection } from "../actions";
 import axios from 'axios';
+import Header from "./header.js";
 
 function configureStore(initialState) {
 	   const enhancer = compose(
@@ -19,6 +20,7 @@ function configureStore(initialState) {
 const store = configureStore({});
 
 class Login extends Component {
+	static navigationOptions = { title: 'Welcome', header: { visible:false } };
 	
 	constructor(props){
         super(props);
@@ -73,32 +75,33 @@ class Login extends Component {
    
    render(){
       return (
-      	  <Provider store={store}>
-			 <View style = {styles.container}>
-				<TextInput style = {styles.input}
-				   underlineColorAndroid = "transparent"
-				   placeholder = "Email"
-				   placeholderTextColor = "#9a73ef"
-				   autoCapitalize = "none"
-				   onChangeText = {this.handleEmail}/>
-				
-				<TextInput style = {styles.input}
-				   underlineColorAndroid = "transparent"
-				   placeholder = "Password"
-				   placeholderTextColor = "#9a73ef"
-				   autoCapitalize = "none"
-				   onChangeText = {this.handlePassword}/>
-				   
-				<TouchableOpacity
-				   style = {styles.submitButton}
-				   onPress = {
-					  () => this.testNav()
-							
-				   }>
-				   <Text style = {styles.submitButtonText}> Submit </Text>
-				</TouchableOpacity>
-			 </View>
-		</Provider>
+			  <Provider store={store}>
+					
+				 <View style = {styles.container}>
+					<TextInput style = {styles.input}
+					   underlineColorAndroid = "transparent"
+					   placeholder = "Email"
+					   placeholderTextColor = "#9a73ef"
+					   autoCapitalize = "none"
+					   onChangeText = {this.handleEmail}/>
+					
+					<TextInput style = {styles.input}
+					   underlineColorAndroid = "transparent"
+					   placeholder = "Password"
+					   placeholderTextColor = "#9a73ef"
+					   autoCapitalize = "none"
+					   onChangeText = {this.handlePassword}/>
+					   
+					<TouchableOpacity
+					   style = {styles.submitButton}
+					   onPress = {
+						  () => this.testNav()
+								
+					   }>
+					   <Text style = {styles.submitButtonText}> Submit </Text>
+					</TouchableOpacity>
+				 </View>
+			</Provider>
       )
    }
 }
